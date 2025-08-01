@@ -1,7 +1,12 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: 
+
+on:
   workflow_dispatch:
+
+permissions: # ✅ This is required for OIDC
+  id-token: write
+  contents: read
 
 jobs:
   terraform:
@@ -20,11 +25,9 @@ jobs:
           token_format: 'access_token'
           workload_identity_provider: ${{ secrets.GCP_FEDERATION }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
-          
+
       - name: Terraform Init
         run: terraform -chdir=terraform init
 
-          
       - name: Terraform Apply
         run: terraform -chdir=terraform apply -auto-approve
-        
