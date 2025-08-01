@@ -23,8 +23,8 @@ jobs:
         uses: 'google-github-actions/auth@v2'
         with:
           token_format: 'access_token'
-          workload_identity_provider: ${{ secrets.GCP_FEDERATION }}
-          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
+          workload_identity_provider: 'projects/85023452068/locations/global/workloadIdentityPools/example-pool/providers/example-prvdr'
+          service_account: 'terraform-deployer@calm-library-462811-g0.iam.gserviceaccount.com'
 
       - name: Terraform Init
         run: terraform -chdir=terraform init
