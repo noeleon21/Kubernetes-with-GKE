@@ -4,7 +4,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   workflow_dispatch:
 
-permissions: # ✅ This is required for OIDC
+permissions: 
   id-token: write
   contents: read
 
@@ -20,11 +20,10 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Configure GCP credentials
-        uses: 'google-github-actions/auth@v2'
+        uses: google-github-actions/auth@v2
         with:
-          token_format: 'access_token'
-          workload_identity_provider: 'projects/85023452068/locations/global/workloadIdentityPools/example-pool/providers/example-prvdr'
-          service_account: 'terraform-deployer@calm-library-462811-g0.iam.gserviceaccount.com'
+          workload_identity_provider: ${{ secrets.GCP_FEDERATION }}
+
 
       - name: Terraform Init
         run: terraform -chdir=terraform init
