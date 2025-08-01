@@ -17,10 +17,10 @@ jobs:
       - name: Configure GCP credentials
         uses: 'google-github-actions/auth@v2'
         with:
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
-         
-
+          token_format: 'access_token'
+          workload_identity_provider: ${{ secrets.GCP_FEDERATION }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
+          
       - name: Terraform Init
         run: terraform -chdir=terraform init
 
