@@ -17,6 +17,7 @@ terraform {
 provider "google" {
   # Configuration options
   region = "us-central1"
+  impersonate_service_account = "85023452068-compute@developer.gserviceaccount.com"
  }
 
 resource "google_service_account" "default" {
