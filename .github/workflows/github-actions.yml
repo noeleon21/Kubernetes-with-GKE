@@ -22,7 +22,7 @@ jobs:
       - name: Configure GCP credentials
         uses: google-github-actions/auth@v2
         with:
-          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
           workload_identity_provider: ${{ secrets.GCP_FEDERATION }}
 
 
