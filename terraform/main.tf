@@ -20,8 +20,8 @@ provider "google" {
 
  }
 resource "google_service_account" "default" {
-  account_id   = "service-account-id"
-  display_name = "Service Account"
+  account_id   = "108933952292595017646"
+
 }
 
 resource "google_container_cluster" "primary" {

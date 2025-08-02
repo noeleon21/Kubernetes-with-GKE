@@ -25,7 +25,7 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           workload_identity_provider: ${{ secrets.GCP_FEDERATION }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
-
+          
 
       - name: Terraform Init
         run: terraform -chdir=terraform init
