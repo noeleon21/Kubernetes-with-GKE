@@ -19,10 +19,15 @@ provider "google" {
   region = "us-central1"
 
  }
-resource "google_service_account" "default" {
-  account_id   = "108933952292595017646"
-
+resource "random_id" "suffix" {
+  byte_length = 4
 }
+
+resource "google_service_account" "default" {
+  account_id   = "gke-deploy-${random_id.suffix.hex}"
+  display_name = "GKE Deploy Service Account"
+}
+
 
 resource "google_container_cluster" "primary" {
   name     = "my-gke-cluster"
